@@ -9,34 +9,35 @@ function feed_get_actions( $pListHash ) {
 				INNER JOIN users_users uu ON (uu.user_id=lal.user_id)
 			  WHERE lal.user_id = ? 
 			  GROUP BY lal.content_id, lal.user_id, uu.login, uu.real_name, uu.email
-			  ORDER BY MAX(lal.last_modified) DESC LIMIT 10";
-	$actions = $gBitDb->getAll( $query, array( $pListHash['user_id'] ) );
-	
+			  ORDER BY MAX(lal.last_modified) DESC";
+
+	$res = $gBitDb->query( $query, array( $pListHash['user_id'] ), 10 );
 	$conjugationQuery = "SELECT * FROM feed_conjugation";
 	$overrides = $gBitDb->getAssoc( $conjugationQuery );
-	foreach( array_keys( $actions ) as $k ) {
-		if( $content = LibertyContent::getLibertyObject($actions[$k]['content_id']) ) {
+
+	while ( $action = $res->fetchRow() ){
+		if( $content = LibertyContent::getLibertyObject($action['content_id']) ) {
 			$contentType = $content->getContentType();
-			$actions[$k]['real_log'] = BitUser::getDisplayName( empty( $pParams['nolink'] ), $actions[$k] ).' ';
+			$action['real_log'] = BitUser::getDisplayName( empty( $pParams['nolink'] ), $action ).' ';
 			if(!empty($overrides[strtolower($contentType)])){
-				$actions[$k]['real_log'] .= $overrides[$contentType]['conjugation_phrase'];
+				$action['real_log'] .= $overrides[$contentType]['conjugation_phrase'];
 				if($overrides[$contentType]['is_target_linked'] == 'y'){
-					$actions[$k]['real_log'] .= ' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
+					$action['real_log'] .= ' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
 				}
 				if( !empty( $overrides[$contentType]['feed_icon_url'] ) ) {
-					 $actions[$k]['feed_icon_url'] = $overrides[$contentType]['feed_icon_url'];
+					 $action['feed_icon_url'] = $overrides[$contentType]['feed_icon_url'];
 				}
 			}else{
-				$actions[$k]['real_log'] .= tra( 'edited' ).' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
+				$action['real_log'] .= tra( 'edited' ).' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
 			}			
-			if( empty( $actions[$k]['feed_icon_url'] ) ) {
-				 $actions[$k]['feed_icon_url'] = FEED_PKG_URL.'icons/pixelmixerbasic/pencil_16.png';
+			if( empty( $action['feed_icon_url'] ) ) {
+				 $action['feed_icon_url'] = FEED_PKG_URL.'icons/pixelmixerbasic/pencil_16.png';
 			}
+			$actions[] = $action;
 		} else {
-			unset( $actions[$k] );
+			unset( $action );
 		}
 	}
-
 	return $actions;
 }
 
