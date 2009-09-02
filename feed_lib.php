@@ -15,6 +15,8 @@ function feed_get_actions( $pListHash ) {
 	$conjugationQuery = "SELECT * FROM feed_conjugation";
 	$overrides = $gBitDb->getAssoc( $conjugationQuery );
 
+	$actions = array();
+
 	while ( $action = $res->fetchRow() ){
 		if( $content = LibertyContent::getLibertyObject($action['content_id']) ) {
 			$contentType = $content->getContentType();
