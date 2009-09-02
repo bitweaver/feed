@@ -14,19 +14,24 @@ function feed_get_actions( $pListHash ) {
 
 	$conjugationQuery = "SELECT * FROM feed_conjugation";
 	$overrides = $gBitDb->getAssoc( $conjugationQuery );
-	foreach( array_keys( $actions ) as $k ){
+	foreach( array_keys( $actions ) as $k ) {
 		if( $content = LibertyContent::getLibertyObject($actions[$k]['content_id']) ) {
-			$contentType = get_class($content);
-		
-			$actions[$k]['real_log'] = BitUser::getDisplayName( empty( $pParams['nolink'] ), $actions[$k] );
+			$contentType = $content->getContentType();
+			$actions[$k]['real_log'] .= BitUser::getDisplayName( empty( $pParams['nolink'] ), $actions[$k] ).' ';
 			if(!empty($overrides[strtolower($contentType)])){
-				$actions[$k]['real_log'] .= $overrides[strtolower($contentType)]['conjugation_phrase'];
-				if($overrides[strtolower($contentType)]['is_target_linked'] == 't'){
+				$actions[$k]['real_log'] .= $overrides[$contentType]['conjugation_phrase'];
+				if($overrides[$contentType]['is_target_linked'] == 'y'){
 					$actions[$k]['real_log'] .= ' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
 				}
+				if( !empty( $overrides[$contentType]['feed_icon_url'] ) ) {
+					 $actions[$k]['feed_icon_url'] = $overrides[$contentType]['feed_icon_url'];
+				}
 			}else{
-				$actions[$k]['real_log'] .= ' '.tra( 'edited' ).' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
+				$actions[$k]['real_log'] .= tra( 'edited' ).' <a href="'.$content->getDisplayUrl().'">'.$content->getTitle().'</a>';
 			}			
+			if( empty( $actions[$k]['feed_icon_url'] ) ) {
+				 $actions[$k]['feed_icon_url'] = FEED_PKG_URL.'icons/pixelmixerbasic/pencil_16.png';
+			}
 		} else {
 			unset( $actions[$k] );
 		}
