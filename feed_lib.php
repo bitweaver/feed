@@ -9,15 +9,15 @@ function feed_get_actions( $pListHash ) {
 				INNER JOIN users_users uu ON (uu.user_id=lal.user_id)
 			  WHERE lal.user_id = ? 
 			  GROUP BY lal.content_id, lal.user_id, uu.login, uu.real_name, uu.email
-			  ORDER BY lal.last_modified DESC LIMIT 10";
+			  ORDER BY MAX(lal.last_modified) DESC LIMIT 10";
 	$actions = $gBitDb->getAll( $query, array( $pListHash['user_id'] ) );
-
+	
 	$conjugationQuery = "SELECT * FROM feed_conjugation";
 	$overrides = $gBitDb->getAssoc( $conjugationQuery );
 	foreach( array_keys( $actions ) as $k ) {
 		if( $content = LibertyContent::getLibertyObject($actions[$k]['content_id']) ) {
 			$contentType = $content->getContentType();
-			$actions[$k]['real_log'] .= BitUser::getDisplayName( empty( $pParams['nolink'] ), $actions[$k] ).' ';
+			$actions[$k]['real_log'] = BitUser::getDisplayName( empty( $pParams['nolink'] ), $actions[$k] ).' ';
 			if(!empty($overrides[strtolower($contentType)])){
 				$actions[$k]['real_log'] .= $overrides[$contentType]['conjugation_phrase'];
 				if($overrides[$contentType]['is_target_linked'] == 'y'){
