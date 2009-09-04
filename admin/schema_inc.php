@@ -28,6 +28,7 @@ $gBitInstaller->registerPackageInfo( FEED_PKG_NAME, array(
 // ### Default UserPermissions
 $gBitInstaller->registerUserPermissions( FEED_PKG_NAME, array(
 	array( 'p_feed_admin', 'Can admin feeds', 'admin', FEED_PKG_NAME ),
+	array( 'p_feed_master', 'Can view master feed', 'registered', FEED_PKG_NAME ),
 	array( 'p_feed_view', 'Can view feed', 'basic', FEED_PKG_NAME ),
 ) );
 
