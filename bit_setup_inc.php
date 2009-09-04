@@ -10,7 +10,6 @@ $gBitSystem->registerPackage( $registerHash );
 
 
 if( $gBitSystem->isPackageActive( 'feed' ) ) {
-
 	if( $gBitUser->hasPermission( 'p_feed_view' )) {
 		$menuHash = array(
 			'package_name'       => FEED_PKG_NAME,
@@ -19,10 +18,6 @@ if( $gBitSystem->isPackageActive( 'feed' ) ) {
 		);
 		$gBitSystem->registerAppMenu( $menuHash );
 	}
-	$menuHash = array(
-		'package_name'  => FEED_PKG_NAME,
-	);
-	$gBitSystem->registerAppMenu( $menuHash );
 }
 
 ?>
