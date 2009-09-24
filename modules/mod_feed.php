@@ -4,6 +4,7 @@ global $gQueryUser,$gBitSmarty;
 
 require_once( FEED_PKG_PATH.'feed_lib.php' );
 
+
 if( !empty($gQueryUser) ){
 
 	if( !empty( $moduleParams['module_params']['no_link_user'] ) ) {
@@ -12,12 +13,17 @@ if( !empty($gQueryUser) ){
 	if( !empty( $moduleParams['module_rows'] ) ) {
 		$listHash['max_records'] = $moduleParams['module_rows'];
 	}
-	$listHash['user_id'] = $gQueryUser->mUserId;
+	if( !empty( $moduleParams['module_params']['user_id'] ) ){
+		$listHash['user_id'] = $moduleParams['module_params']['user_id'];
+	}else{
+		$listHash['user_id'] = $gQueryUser->mUserId;
+	}
+
 	$actions = feed_get_actions( $listHash );
 
 	$gBitSmarty->assign( 'actions', $actions);
-
-
+		
+	
 }
 
 
