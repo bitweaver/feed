@@ -15,7 +15,10 @@ if( !empty( $moduleParams['module_params']['no_link_user'] ) ) {
 }
 if( !empty( $moduleParams['module_rows'] ) ) {
 	$listHash['max_records'] = $moduleParams['module_rows'];
+}elseif (!empty($moduleParams['module_params']['max_records'])){
+	$listHash['max_records'] = $moduleParams['module_params']['max_records'];
 }
+
 if( !empty( $moduleParams['module_params']['user_id'] ) ){
 	$listHash['user_id'] = $moduleParams['module_params']['user_id'];
 }else{
@@ -23,7 +26,6 @@ if( !empty( $moduleParams['module_params']['user_id'] ) ){
 }
 
 $statuses = feed_get_status( $listHash );
-
 $gBitSmarty->assign( 'statuses', $statuses);
 
 foreach ($statuses as $status){

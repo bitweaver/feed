@@ -108,12 +108,26 @@ function feed_get_status( $pListHash ){
 			$replyUser->load();
 			$replyAvatarUrl = $replyUser->getThumbnailUrl();
 			if(empty($replyAvatarUrl)){
-				$replyAvatarUrl = USERS_PKG_URI."users/icons/silhouette.png";
+				$replyAvatarUrl = USERS_PKG_URI."icons/silhouette.png";
 			}
 			$reply['feed_icon_url'] = $replyAvatarUrl;
 
 		}
-
+		//after loading up the thumbnails in the prior array layout for ease, we break up the array to split long comment threads
+		$MAX_SHOWN_REPLIES = 3;
+		if ( count( $status['replies'] ) > $MAX_SHOWN_REPLIES ){
+			$maxIteration = count( $status['replies'] ) - $MAX_SHOWN_REPLIES;
+			$i = 0;
+			foreach( $status['replies'] as $excess ){
+				if($i < $maxIteration){
+					$status['replies_excess'][$excess['content_id']] = $excess; //use content_id to index for consistency with normal replies array
+					unset($status['replies'][$excess['content_id']]); //remove from the normal replies array
+				}else{
+					break;
+				}
+				$i++;
+			}	
+		}
 		$statuses[] = $status;	
 	}
 
