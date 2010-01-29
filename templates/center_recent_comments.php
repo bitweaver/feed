@@ -20,10 +20,13 @@ if (!empty($params['full'])) {
 	$listHash['parse'] = TRUE;
 }
 
-$listHash['full'] = TRUE;
-$listHash['thumb_size'] = 'avatar';
-$listHash['show_date'] = TRUE;
-$listHash['root_content_type_guid'] = array('fisheyeimage','fisheyegallery','bituser','fisheyeflickrimage','fisheyeflickrset','feedstatus');
+$listHash['full'] = (!empty( $params['full'] ) ? $params['full'] : TRUE);
+$listHash['thumb_size'] = (!empty( $params['thumb_size'] ) ? $params['thumb_size'] : 'avatar');
+$listHash['show_date'] = (!empty( $params['show_date'] ) ? $params['show_date'] : TRUE);;
+
+if( !empty( $params['root_content_type_guid'] ) ) {
+	$listHash['root_content_type_guid'] = $params['root_content_type_guid'];
+}
 
 $gBitSmarty->assign( 'moduleTitle', $moduleTitle );
 $lcom = new LibertyComment();
