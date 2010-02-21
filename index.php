@@ -1,5 +1,5 @@
 <?php
-// @version  $Header: /cvsroot/bitweaver/_bit_feed/index.php,v 1.2 2009/09/04 18:17:01 spiderr Exp $
+// @version  $Header: /cvsroot/bitweaver/_bit_feed/index.php,v 1.3 2010/02/21 12:32:02 spiderr Exp $
 
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2004, bitweaver.org
@@ -13,7 +13,7 @@
 // | Authors: spider <spider@steelsun.com>
 // +----------------------------------------------------------------------+
 
-require_once( '../bit_setup_inc.php' );
+require_once( '../kernel/setup_inc.php' );
 require_once( FEED_PKG_PATH.'feed_lib.php' );
 
 $gBitSystem->verifyPermission( 'p_feed_master' );
