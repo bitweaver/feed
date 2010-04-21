@@ -23,7 +23,7 @@ class FeedStatus extends LibertyComment {
 		$this->mContentTypeGuid = FEEDSTATUS_CONTENT_TYPE_GUID;
 		$this->registerContentType( FEEDSTATUS_CONTENT_TYPE_GUID, array(
 				'content_type_guid' => FEEDSTATUS_CONTENT_TYPE_GUID,
-				'content_description' => 'Feed Status',
+				'content_name' => 'Feed Status',
 				'handler_class' => 'FeedStatus',
 				'handler_package' => 'feed',
 				'handler_file' => 'FeedStatus.php',
