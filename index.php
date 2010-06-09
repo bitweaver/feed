@@ -1,5 +1,5 @@
 <?php
-// @version  $Header: /cvsroot/bitweaver/_bit_feed/index.php,v 1.3 2010/02/21 12:32:02 spiderr Exp $
+// @version  $Header$
 
 // +----------------------------------------------------------------------+
 // | Copyright (c) 2004, bitweaver.org
