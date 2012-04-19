@@ -5,8 +5,8 @@ $tables = array(
 	conjugation_phrase C(255) NOTNULL,
 	feed_icon_url C(255),
 	is_target_linked   C(1)
-    CONSTRAINT ', CONSTRAINT `feed_conj_content_type_ref` FOREIGN KEY (`content_type_guid`) REFERENCES `".BIT_DB_PREFIX."liberty_content_types` ( `content_type_guid` )'
   "
+//    CONSTRAINT ', CONSTRAINT `feed_conj_content_type_ref` FOREIGN KEY (`content_type_guid`) REFERENCES `".BIT_DB_PREFIX."liberty_content_types` ( `content_type_guid` )'
 );
 
 global $gBitInstaller;
