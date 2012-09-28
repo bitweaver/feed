@@ -33,7 +33,7 @@ function feed_get_actions( $pListHash ) {
 		if( !empty($action['content_id']) ) { //indicates that this isn't a direct action, more of a "status update" ex. "Ronald is pleased with his artwork"
 			if( $content = LibertyContent::getLibertyObject($action['content_id']) ) {
 				$contentType = $content->getContentType();
-				$action['real_log'] = BitUser::getDisplayName( empty( $pListHash['no_link_user'] ), $action ).' ';
+				$action['real_log'] = BitUser::getDisplayNameFromHash( empty( $pListHash['no_link_user'] ), $action ).' ';
 				if(!empty($overrides[strtolower($contentType)])){
 					$action['real_log'] .= $overrides[$contentType]['conjugation_phrase'];
 					if($overrides[$contentType]['is_target_linked'] == 'y'){
