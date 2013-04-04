@@ -20,6 +20,6 @@
 	</div>
 {/foreach}
 	<div class="control-group submit clear">
-		 <input type="submit" name="store_feed" value="Submit" />
+		 <input type="submit" class="btn" name="store_feed" value="Submit" />
 	</div>
 	</form>
