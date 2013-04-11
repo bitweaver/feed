@@ -21,7 +21,7 @@ if( !empty($gQueryUser) ){
 
 	$actions = feed_get_actions( $listHash );
 
-	$gBitSmarty->assign( 'actions', $actions);
+	$_template->tpl_vars['actions'] = new Smarty_variable( $actions);
 		
 	
 }

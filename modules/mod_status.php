@@ -26,7 +26,7 @@ if( !empty( $moduleParams['module_params']['user_id'] ) ){
 }
 
 $statuses = feed_get_status( $listHash );
-$gBitSmarty->assign( 'statuses', $statuses);
+$_template->tpl_vars['statuses'] = new Smarty_variable( $statuses);
 
 foreach ($statuses as $status){
 
@@ -45,7 +45,7 @@ foreach ($statuses as $status){
 		
 		$statuses = feed_get_status( $listHash );
 
-		$gBitSmarty->assign( 'statuses', $statuses);
+		$_template->tpl_vars['statuses'] = new Smarty_variable( $statuses);
 		break;
 	}
 }
