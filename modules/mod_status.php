@@ -1,5 +1,17 @@
 <?php
+/**
+ * @version $Header$
+ *
+ * FeedStatus class
+ *
+ * @version  $Revision$
+ * @package  feed
+ * @subpackage functions
+ */
 
+/**
+ * global defs
+ */
 global $gQueryUser,$gBitSmarty;
 
 require_once( FEED_PKG_PATH.'feed_lib.php' );

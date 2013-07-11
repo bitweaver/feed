@@ -1,5 +1,17 @@
 <?php
+/**
+ * @version $Header$
+ *
+ * FeedStatus class
+ *
+ * @version  $Revision$
+ * @package  feed
+ * @subpackage functions
+ */
 
+/**
+ * feed_get_actions
+ */
 function feed_get_actions( $pListHash ) {
 	global $gBitDb;
 
@@ -14,7 +26,7 @@ function feed_get_actions( $pListHash ) {
 		$whereSql = "WHERE 1=1 ";
 	}
 
-	$query = "SELECT lal.content_id, lal.user_id, lal.log_message, MAX(lal.last_modified) AS last_modified, uu.login, uu.real_name, uu.email 
+	$query = "SELECT lal.content_id, lal.user_id, lal.log_message, MAX(lal.last_modified) AS last_modified, uu.login, uu.real_name, uu.email
 			  FROM liberty_action_log lal
 			  INNER JOIN liberty_content lc ON (lc.content_id=lal.content_id)
 			  INNER JOIN users_users uu ON (uu.user_id=lal.user_id)
@@ -76,7 +88,7 @@ function feed_get_status( $pListHash ){
 		$whereSql = "WHERE 1=1 ";
 	}
 
-	$query = "SELECT lal.content_id, lal.user_id, lal.log_message, MAX(lal.last_modified) AS last_modified, lc.data, uu.login, uu.real_name, uu.email 
+	$query = "SELECT lal.content_id, lal.user_id, lal.log_message, MAX(lal.last_modified) AS last_modified, lc.data, uu.login, uu.real_name, uu.email
 			  FROM liberty_action_log lal
 			  INNER JOIN liberty_content lc ON (lc.content_id=lal.content_id)
 			  INNER JOIN liberty_comments lcs ON (lcs.content_id = lc.content_id)
