@@ -1,7 +1,7 @@
 	<form action="{$smarty.const.KERNEL_PKG_URI}admin/index.php?page=feed" method="POST">
 		
 	<input type="hidden" name="page" value="{$smarty.request.page}" />
-	<div class="control-group">
+	<div class="form-group">
 		<div class="span-4"> <h2>Content Description</h2> </div>
 		<div class="span-4"> <h2>Feed Verb</h2> </div>
 		<div class="span-4"> <h2>Remove Target Link</h2> </div>
@@ -19,7 +19,7 @@
 		</div>
 	</div>
 {/foreach}
-	<div class="control-group submit clear">
-		 <input type="submit" class="btn" name="store_feed" value="Submit" />
+	<div class="form-group submit clear">
+		 <input type="submit" class="btn btn-default" name="store_feed" value="Submit" />
 	</div>
 	</form>
