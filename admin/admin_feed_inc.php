@@ -20,7 +20,7 @@ if( !empty( $_REQUEST['store_feed'] ) ) {
 }
 
 $contentTypes = get_content_types();
-$gBitSmarty->assign_by_ref('contentTypes',$contentTypes);
+$gBitSmarty->assignByRef('contentTypes',$contentTypes);
 
 
 
