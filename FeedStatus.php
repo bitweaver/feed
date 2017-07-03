@@ -12,7 +12,6 @@
  * required setup
  */
 require_once( LIBERTY_PKG_PATH.'LibertyComment.php' );
-require_once( USERS_PKG_PATH.'BitUser.php');
 
 define( 'FEEDSTATUS_CONTENT_TYPE_GUID','feedstatus');
 
