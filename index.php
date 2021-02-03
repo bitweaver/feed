@@ -13,7 +13,7 @@
 // | Authors: spider <spider@steelsun.com>
 // +----------------------------------------------------------------------+
 
-require_once( '../kernel/setup_inc.php' );
+require_once( '../kernel/includes/setup_inc.php' );
 require_once( FEED_PKG_PATH.'feed_lib.php' );
 
 $gBitSystem->verifyPermission( 'p_feed_master' );
