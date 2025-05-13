@@ -14,7 +14,7 @@
 // +----------------------------------------------------------------------+
 
 require_once( '../kernel/includes/setup_inc.php' );
-require_once( FEED_PKG_PATH.'feed_lib.php' );
+require_once( FEED_PKG_INCLUDE_PATH.'feed_lib.php' );
 
 $gBitSystem->verifyPermission( 'p_feed_master' );
 $listHash['max_records'] = 100;
