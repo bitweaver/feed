@@ -2,7 +2,7 @@
 
 global $gBitDb,$gQueryUser,$gBitSmarty;
 
-require_once( FEED_PKG_PATH.'feed_lib.php' );
+require_once( FEED_PKG_INCLUDE_PATH.'feed_lib.php' );
 
 if( !empty($gQueryUser) ){
 	if( !empty( $moduleParams['module_params']['no_link_user'] ) ) {
